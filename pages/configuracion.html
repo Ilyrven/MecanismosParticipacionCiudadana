@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="cfg.title">Configuración</title>
+  <meta name="description" data-i18n-content="cfg.metaDesc" content="Configuración de la plataforma: cuenta y sesión, apariencia, idioma, accesibilidad, estadísticas, logros, privacidad e información del proyecto." />
+  <link rel="icon" type="image/png" href="../assets/logo/favicon.png" />
+  <link rel="icon" href="../assets/logo/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="../assets/logo/favicon.png" />
+
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/sections.css" />
+  <link rel="stylesheet" href="../css/quiz.css" />
+  <link rel="stylesheet" href="../css/modal.css" />
+  <link rel="stylesheet" href="../css/game-shell.css" />
+  <link rel="stylesheet" href="../css/student.css" />
+  <link rel="stylesheet" href="../css/settings.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="../css/themes.css" />
+  <link rel="stylesheet" href="../css/profile.css" />
+  <link rel="stylesheet" href="../css/accessibility.css" />
+  <script src="../js/accessibility.js"></script>
+</head>
+<body>
+
+  <div id="navbar-root" data-base="../"></div>
+
+  <main class="cfg-shell">
+    <div class="container">
+      <header class="cfg-header">
+        <span class="cfg-header__icon" aria-hidden="true"><svg viewBox="0 0 24 24" id="cfg-header-icon"></svg></span>
+        <div>
+          <h1 data-i18n="cfg.title">Configuración</h1>
+          <p class="text-muted" data-i18n="cfg.subtitle">Personaliza la plataforma y administra tu sesión.</p>
+        </div>
+      </header>
+
+      <div class="cfg-layout">
+        <nav class="cfg-nav" id="cfg-nav" aria-label="Secciones de configuración" data-i18n-attr="aria-label:cfg.sections"></nav>
+        <div class="cfg-content">
+          <section class="cfg-panel" id="panel-cuenta" data-panel="cuenta" aria-labelledby="tab-cuenta" hidden></section>
+          <section class="cfg-panel" id="panel-apariencia" data-panel="apariencia" aria-labelledby="tab-apariencia" hidden></section>
+          <section class="cfg-panel" id="panel-idioma" data-panel="idioma" aria-labelledby="tab-idioma" hidden></section>
+          <section class="cfg-panel" id="panel-accesibilidad" data-panel="accesibilidad" aria-labelledby="tab-accesibilidad" hidden></section>
+          <section class="cfg-panel" id="panel-estadisticas" data-panel="estadisticas" aria-labelledby="tab-estadisticas" hidden></section>
+          <section class="cfg-panel" id="panel-logros" data-panel="logros" aria-labelledby="tab-logros" hidden></section>
+          <section class="cfg-panel" id="panel-historial" data-panel="historial" aria-labelledby="tab-historial" hidden></section>
+          <section class="cfg-panel" id="panel-privacidad" data-panel="privacidad" aria-labelledby="tab-privacidad" hidden></section>
+          <section class="cfg-panel" id="panel-acerca" data-panel="acerca" aria-labelledby="tab-acerca" hidden></section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="cfg-preview-bar" id="cfg-preview-bar" role="status" hidden></div>
+  <div class="cfg-toast" id="cfg-toast" role="status" aria-live="polite"></div>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img class="navbar__logo" src="../assets/logo/logo-colegio.png" alt="" onerror="this.style.display='none'" />
+        <div class="footer__brand-text">
+          <b>Institución Educativa José Antonio Aguilera</b>
+          <span data-i18n="footer.project">Proyecto educativo — SENA · Mecanismos de Participación Ciudadana</span>
+        </div>
+      </div>
+      <div class="footer__meta">San Pedro, Valle del Cauca</div>
+    </div>
+  </footer>
+
+  <!-- Idiomas (sistema central: js/i18n) -->
+  <script src="../js/i18n/i18n.js"></script>
+  <script src="../js/i18n/lang/es.js"></script>
+  <script src="../js/i18n/lang/en.js"></script>
+  <script src="../js/i18n/lang/ru.js"></script>
+  <script src="../js/i18n/lang/pt.js"></script>
+  <script src="../js/i18n/lang/fr.js"></script>
+  <script src="../js/components/icons.js"></script>
+  <script src="../js/components/navbar.js"></script>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/profile.js"></script>
+  <script src="../js/sound.js"></script>
+  <script src="../js/student.js"></script>
+  <script src="../js/history.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/settings-profile.js"></script>
+  <script src="../js/settings.js"></script>
+</body>
+</html>

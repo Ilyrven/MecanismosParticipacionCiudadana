@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="rc-i18n" content="es-only" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz · Participación Ciudadana · I.E. José Antonio Aguilera</title>
+  <link rel="icon" type="image/png" href="../assets/logo/favicon.png" />
+  <link rel="icon" href="../assets/logo/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="../assets/logo/favicon.png" />
+  <meta name="description" content="Actividad interactiva en clase sobre los mecanismos de participación ciudadana." />
+
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/cards.css" />
+  <link rel="stylesheet" href="../css/sections.css" />
+  <link rel="stylesheet" href="../css/quiz.css" />
+  <link rel="stylesheet" href="../css/modal.css" />
+  <link rel="stylesheet" href="../css/timer.css" />
+  <link rel="stylesheet" href="../css/progress.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="../css/student.css" />
+  <link rel="stylesheet" href="../css/themes.css" />
+  <link rel="stylesheet" href="../css/profile.css" />
+  <link rel="stylesheet" href="../css/accessibility.css" />
+  <script src="../js/accessibility.js"></script>
+</head>
+<body>
+
+  <div id="navbar-root" data-base="../"></div>
+
+  <main class="quiz-shell">
+    <div class="container">
+
+      <!-- ============ ETAPA 0: SELECCIÓN DE ROL ============ -->
+      <section class="quiz-stage is-active" id="stage-role" data-stage="role" aria-labelledby="role-title">
+        <div class="section-head" style="margin-bottom: var(--space-6);">
+          <span class="eyebrow">🎮 Quiz</span>
+          <h1 id="role-title">¿Cómo quieres participar?</h1>
+          <p class="text-muted">Elige tu rol para comenzar la actividad.</p>
+        </div>
+
+        <div class="role-grid" id="role-grid">
+          <button type="button" class="role-card" data-role="alumno">
+            <span class="role-card__icon" aria-hidden="true">🎓</span>
+            <span class="role-card__title">Soy alumno</span>
+            <span class="role-card__text">Responde el cuestionario directamente en la página y recibe tu calificación al finalizar.</span>
+            <ul class="role-card__list">
+              <li>Una pregunta a la vez, con corrección automática</li>
+              <li>Preguntas abiertas con revisión del maestro</li>
+              <li>Nota de 1,0 a 5,0</li>
+            </ul>
+            <span class="role-card__cta">Continuar como alumno →</span>
+          </button>
+
+          <button type="button" class="role-card" data-role="maestro">
+            <span class="role-card__icon" aria-hidden="true">🧑‍🏫</span>
+            <span class="role-card__title">Soy maestro</span>
+            <span class="role-card__text">Administra la actividad frente a la clase: configura, controla el tiempo y dirige los grupos.</span>
+            <ul class="role-card__list">
+              <li>Configura cantidad, dificultad y tiempo</li>
+              <li>Pausa y reanuda el temporizador</li>
+              <li>Modalidad por grupos con marcador</li>
+            </ul>
+            <span class="role-card__cta">Continuar como maestro →</span>
+          </button>
+        </div>
+
+        <p class="role-note text-muted">
+          El rol organiza la actividad en esta página; no es un inicio de sesión ni una medida de seguridad.
+        </p>
+        <p class="student-note text-muted" data-student-note hidden></p>
+      </section>
+
+      <!-- ============ IDENTIFICACIÓN DEL ALUMNO ============ -->
+      <section class="quiz-stage" id="stage-ident" data-stage="ident" aria-labelledby="student-title">
+        <div id="student-mount"></div>
+      </section>
+
+      <!-- ============ ETAPA 1: CONFIGURACIÓN ============ -->
+      <section class="quiz-stage" id="stage-config" data-stage="config">
+        <div class="section-head" style="margin-bottom: var(--space-6);">
+          <span class="eyebrow" id="config-role-badge">🎮 Quiz</span>
+          <h1 id="config-title">Pon a prueba tus conocimientos</h1>
+          <p id="config-subtitle" class="text-muted">Configura la actividad.</p>
+          <button type="button" class="link-btn" id="btn-cambiar-rol">← Cambiar rol</button>
+        </div>
+
+        <div class="config-card">
+
+          <div class="config-group">
+            <p class="config-group__title"><span class="step-badge">1</span> Modalidad</p>
+            <div class="option-grid" id="config-modalidad"></div>
+            <p class="config-note" id="config-modalidad-note" hidden></p>
+            <div class="group-setup" id="group-setup" hidden>
+              <p class="config-group__sub">Número de grupos</p>
+              <div class="pill-group" id="config-num-grupos"></div>
+              <div class="group-names" id="group-names"></div>
+            </div>
+          </div>
+
+          <div class="config-group">
+            <p class="config-group__title"><span class="step-badge">2</span> Tipo de pregunta</p>
+            <div class="pill-group" id="config-tipo"></div>
+          </div>
+
+          <div class="config-group">
+            <p class="config-group__title"><span class="step-badge">3</span> Número de preguntas</p>
+            <div class="pill-group" id="config-numero"></div>
+            <div class="config-custom-input" id="config-numero-custom">
+              <label for="numero-personalizado" class="text-muted">Cantidad (1 a 60):</label>
+              <input type="number" id="numero-personalizado" min="1" max="60" value="10" inputmode="numeric" />
+            </div>
+          </div>
+
+          <div class="config-group" id="config-dificultad-group">
+            <p class="config-group__title"><span class="step-badge">4</span> Dificultad</p>
+            <div class="pill-group" id="config-dificultad"></div>
+          </div>
+
+          <div class="config-group" id="config-tiempo-group">
+            <p class="config-group__title"><span class="step-badge">5</span> Tiempo por pregunta</p>
+            <div class="pill-group" id="config-tiempo"></div>
+            <div class="config-custom-input" id="config-tiempo-custom">
+              <label for="tiempo-personalizado" class="text-muted">Segundos (10 a 1800):</label>
+              <input type="number" id="tiempo-personalizado" min="10" max="1800" value="90" inputmode="numeric" />
+            </div>
+            <p class="config-note" id="config-tiempo-fijo" hidden></p>
+          </div>
+
+          <div class="config-group" id="config-opciones-group">
+            <p class="config-group__title"><span class="step-badge">6</span> Opciones</p>
+
+            <div class="toggle-row">
+              <div>
+                <div class="toggle-row__label">Preguntas aleatorias</div>
+                <div class="toggle-row__hint">Cambia la selección y el orden de preguntas y opciones en cada partida.</div>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="toggle-aleatorio" checked aria-label="Preguntas aleatorias" />
+                <span class="switch__track"></span>
+              </label>
+            </div>
+
+            <div class="toggle-row">
+              <div>
+                <div class="toggle-row__label">Sonido del temporizador</div>
+                <div class="toggle-row__hint">Aviso sonoro breve cuando el tiempo termina.</div>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="toggle-sonido" checked aria-label="Sonido del temporizador" />
+                <span class="switch__track"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="config-launch">
+            <p class="notice notice--warn" id="config-aviso" role="status" hidden></p>
+            <button class="btn btn-primary btn-lg" id="btn-iniciar-quiz" type="button">🚀 Iniciar Quiz</button>
+            <p class="text-muted" style="margin-top: var(--space-3); font-size: var(--fs-sm);" id="config-hint"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ ETAPA 2: PREGUNTA ============ -->
+      <section class="quiz-stage question-stage" id="stage-question" data-stage="question">
+        <div class="question-topbar">
+          <div class="question-meta">
+            <span class="mode-badge" id="question-mode-badge">Individual</span>
+            <span id="question-diff-badge" class="question-diff question-diff--facil">Fácil</span>
+          </div>
+          <div class="question-counter">
+            Pregunta <span id="question-current">01</span> <span>/ <span id="question-total">10</span></span>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-salir">✕ Salir</button>
+        </div>
+
+        <div class="timer" id="timer-wrap" role="timer" aria-label="Tiempo restante">
+          <svg class="timer__svg" viewBox="0 0 190 190" aria-hidden="true">
+            <circle class="timer__track" cx="95" cy="95" r="82"></circle>
+            <circle class="timer__progress" id="timer-ring" cx="95" cy="95" r="82"></circle>
+          </svg>
+          <span class="timer__label" id="timer-label">02:00</span>
+        </div>
+
+        <p class="timer-flash visually-hidden" id="timer-flash">⏰ ¡TIEMPO!</p>
+        <p class="pause-flag" id="pause-flag" hidden>⏸ Actividad en pausa</p>
+
+        <div class="question-body">
+          <span class="question-mech-tag" id="question-mech-tag">Tutela</span>
+          <h2 class="question-text" id="question-text" tabindex="-1">¿Qué es la acción de tutela?</h2>
+          <p class="question-hint" id="question-hint"></p>
+        </div>
+
+        <div class="options-grid" id="question-options" role="group" aria-label="Opciones de respuesta"></div>
+
+        <div class="open-answer" id="open-answer" hidden>
+          <label for="open-answer-text" class="open-answer__label">Tu respuesta</label>
+          <textarea id="open-answer-text" rows="7" maxlength="2000" placeholder="Escribe aquí tu respuesta con tus propias palabras…"></textarea>
+          <div class="open-answer__meta">
+            <span class="open-answer__error" id="open-answer-error" role="alert" hidden>Escribe una respuesta o elige «Dejar sin responder».</span>
+            <span class="open-answer__count" id="open-answer-count">0 / 2000</span>
+          </div>
+        </div>
+
+        <div class="feedback" id="question-feedback" role="status" aria-live="polite" hidden></div>
+
+        <div class="group-panel" id="group-panel" hidden>
+          <p class="group-panel__title">Marcador · otorga el punto a los grupos que respondieron bien</p>
+          <div class="group-panel__list" id="group-panel-list"></div>
+        </div>
+
+        <div class="progress-track" role="progressbar" aria-label="Progreso del cuestionario" aria-valuemin="0" aria-valuemax="100" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+
+        <!-- Controles del ALUMNO -->
+        <div class="question-actions" id="actions-alumno" hidden>
+          <button class="timer-mute" id="btn-mute-alumno" type="button" aria-pressed="false"></button>
+          <button class="btn btn-secondary" id="btn-sin-responder" type="button" hidden>Dejar sin responder</button>
+          <button class="btn btn-primary" id="btn-confirmar" type="button">Confirmar respuesta</button>
+          <button class="btn btn-primary" id="btn-siguiente-alumno" type="button" hidden>Siguiente pregunta →</button>
+        </div>
+
+        <!-- Controles del MAESTRO (administrativos) -->
+        <div class="question-actions" id="actions-maestro" hidden>
+          <button class="btn btn-ghost" id="btn-pausar" type="button">⏸ Pausar</button>
+          <button class="btn btn-secondary" id="btn-revelar" type="button">👁 Mostrar respuesta</button>
+          <button class="timer-mute" id="btn-mute" type="button" aria-pressed="false"></button>
+          <button class="btn btn-primary" id="btn-siguiente" type="button">Siguiente pregunta →</button>
+        </div>
+      </section>
+
+      <!-- ============ ETAPA 3: RESULTADO ============ -->
+      <section class="quiz-stage result-stage" id="stage-result" data-stage="result">
+        <div class="result-badge" aria-hidden="true">🎉</div>
+        <h2 id="result-title" tabindex="-1">Actividad completada</h2>
+        <p class="text-muted" id="result-subtitle"></p>
+
+        <!-- Resultado del ALUMNO -->
+        <div class="result-block" id="result-alumno" hidden>
+          <div class="student-card" id="result-student" hidden></div>
+          <div class="grade-card" id="grade-card">
+            <span class="grade-card__label" id="grade-label">Calificación</span>
+            <b class="grade-card__value" id="grade-value">—</b>
+            <span class="grade-card__scale">sobre 5,0</span>
+            <span class="grade-card__flag" id="grade-flag" hidden></span>
+          </div>
+
+          <div class="result-stats" id="result-stats">
+            <div class="result-stat"><b id="stat-total">0</b><span>Preguntas</span></div>
+            <div class="result-stat"><b id="stat-correctas">0</b><span>Correctas</span></div>
+            <div class="result-stat"><b id="stat-incorrectas">0</b><span>Incorrectas</span></div>
+            <div class="result-stat"><b id="stat-sin">0</b><span>Sin responder</span></div>
+            <div class="result-stat"><b id="stat-porcentaje">—</b><span>Aciertos</span></div>
+            <div class="result-stat" id="stat-pendientes-wrap"><b id="stat-pendientes">0</b><span>Por revisar</span></div>
+          </div>
+
+          <p class="result-message" id="result-message"></p>
+          <p class="notice notice--info" id="result-nota-explicacion" hidden></p>
+
+          <div class="summary" id="summary-wrap">
+            <h3 class="summary__title">Resumen de tus respuestas</h3>
+            <ol class="summary__list" id="summary-list"></ol>
+          </div>
+
+          <p class="text-muted result-privacy">Este resultado solo existe en esta pantalla: no se guarda ni se envía a ningún sitio. Si el maestro lo necesita, usa «Copiar resumen».</p>
+        </div>
+
+        <!-- Resultado del MAESTRO -->
+        <div class="result-block" id="result-maestro" hidden>
+          <div id="result-maestro-individual" hidden>
+            <div class="manual-score">
+              <p class="manual-score__title">Registra los aciertos de la actividad</p>
+              <p class="text-muted" style="font-size: var(--fs-sm); margin-bottom: var(--space-4);">
+                Las respuestas se dieron en papel: indica cuántas fueron correctas para calcular la nota (1,0 a 5,0).
+              </p>
+              <div class="manual-score__row">
+                <span>Respuestas correctas</span>
+                <div class="stepper">
+                  <button type="button" id="score-minus" aria-label="Restar una respuesta correcta">−</button>
+                  <output id="score-value" aria-live="polite">0</output>
+                  <button type="button" id="score-plus" aria-label="Sumar una respuesta correcta">+</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="result-stats" style="margin-top: var(--space-4);">
+              <div class="result-stat"><b id="m-correctas">0</b><span>Correctas</span></div>
+              <div class="result-stat"><b id="m-incorrectas">0</b><span>Incorrectas</span></div>
+              <div class="result-stat"><b id="m-porcentaje">0%</b><span>Aciertos</span></div>
+              <div class="result-stat"><b id="m-nota">1,0</b><span>Nota</span></div>
+            </div>
+            <p class="result-message" id="m-message" style="margin-top: var(--space-4);"></p>
+          </div>
+
+          <div id="result-maestro-grupos" hidden>
+            <h3 class="summary__title">Resultados por grupos</h3>
+            <ol class="ranking" id="ranking-list"></ol>
+            <p class="text-muted result-privacy">Nota del grupo = 1,0 + (puntos / preguntas) × 4,0.</p>
+          </div>
+
+          <div class="answer-key" id="answer-key-wrap">
+            <button class="btn btn-ghost" id="btn-toggle-answers" type="button" aria-expanded="false">📋 Ver hoja de respuestas</button>
+            <div class="answer-key__list" id="answer-key-list" hidden></div>
+          </div>
+        </div>
+
+        <div class="question-actions">
+          <a class="btn btn-secondary" href="aprender.html">Volver a Aprender</a>
+          <button class="btn btn-secondary" id="btn-copiar" type="button" hidden>📋 Copiar resumen</button>
+          <button class="btn btn-primary" id="btn-nuevo-quiz" type="button">🔄 Nuevo cuestionario</button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ============ MODAL: CONFIRMAR SALIDA ============ -->
+  <div class="modal-overlay" id="exit-modal" role="dialog" aria-modal="true" aria-labelledby="exit-modal-title" aria-describedby="exit-modal-text">
+    <div class="modal modal--confirm" role="document">
+      <div class="modal-confirm__body">
+        <h2 class="modal-confirm__title" id="exit-modal-title">¿Salir del cuestionario?</h2>
+        <p id="exit-modal-text">Si sales, perderás el progreso actual y tendrás que comenzar desde la pregunta 1. Al iniciar una nueva partida, las preguntas podrán aparecer en un orden diferente y también podrá cambiar la selección.</p>
+      </div>
+      <div class="modal-confirm__actions">
+        <button type="button" class="btn btn-primary" id="exit-modal-continue">Continuar</button>
+        <button type="button" class="btn btn-secondary btn-danger-outline" id="exit-modal-leave">Salir</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img class="navbar__logo" src="../assets/logo/logo-colegio.png" alt="" onerror="this.style.display='none'" />
+        <div class="footer__brand-text">
+          <b>Institución Educativa José Antonio Aguilera</b>
+          <span data-i18n="footer.project">Proyecto educativo — SENA · Mecanismos de Participación Ciudadana</span>
+        </div>
+      </div>
+      <div class="footer__meta">San Pedro, Valle del Cauca</div>
+    </div>
+  </footer>
+
+  <!-- Datos -->
+  <script src="../data/mecanismos/tutela.js"></script>
+  <script src="../data/mecanismos/derecho-peticion.js"></script>
+  <script src="../data/mecanismos/referendo.js"></script>
+  <script src="../data/mecanismos/plebiscito.js"></script>
+  <script src="../data/mecanismos/consulta-popular.js"></script>
+  <script src="../data/mecanismos/cabildo-abierto.js"></script>
+  <script src="../data/mecanismos/iniciativa-popular.js"></script>
+  <script src="../data/mecanismos/revocatoria-mandato.js"></script>
+  <script src="../data/mecanismos/index.js"></script>
+  <script src="../data/preguntas/preguntas-faciles.js"></script>
+  <script src="../data/preguntas/preguntas-medias.js"></script>
+  <script src="../data/preguntas/preguntas-dificiles.js"></script>
+  <script src="../data/preguntas/preguntas.js"></script>
+  <script src="../data/preguntas-abiertas/banco-base.js"></script>
+  <script src="../data/preguntas-abiertas/banco-adicional.js"></script>
+  <script src="../data/preguntas-abiertas/index.js"></script>
+
+  <!-- Componentes -->
+  <!-- Idiomas (sistema central: js/i18n) -->
+  <script src="../js/i18n/i18n.js"></script>
+  <script src="../js/i18n/lang/es.js"></script>
+  <script src="../js/i18n/lang/en.js"></script>
+  <script src="../js/i18n/lang/ru.js"></script>
+  <script src="../js/i18n/lang/pt.js"></script>
+  <script src="../js/i18n/lang/fr.js"></script>
+  <script src="../js/components/icons.js"></script>
+  <script src="../js/components/navbar.js"></script>
+  <script src="../js/components/buttons.js"></script>
+  <script src="../js/components/animations.js"></script>
+
+  <!-- Núcleo -->
+  <script src="../js/config.js"></script>
+  <script src="../js/profile.js"></script>
+  <script src="../js/sound.js"></script>
+  <script src="../js/student.js"></script>
+  <script src="../js/history.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/components/content.js"></script>
+  <script src="../js/modal.js"></script>
+
+  <!-- Quiz -->
+  <script src="../js/quiz/quiz-config.js"></script>
+  <script src="../js/quiz/quiz-engine.js"></script>
+  <script src="../js/quiz/quiz-timer.js"></script>
+  <script src="../js/quiz/quiz-score.js"></script>
+  <script src="../js/quiz/quiz-ui.js"></script>
+  <script src="../js/quiz/quiz.js"></script>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+/* ==========================================================================
+   THEMES.CSS
+   Ajustes finos que dependen del tema activo (más allá de las variables
+   definidas en variables.css). Ver también: js/theme.js
+   ========================================================================== */
+
+[data-tone="dark"] .hero__eyebrow,
+[data-tone="dark"] .filter-chip,
+[data-tone="dark"] .pill,
+[data-tone="dark"] .option-card {
+  box-shadow: none;
+}
+
+[data-tone="dark"] .mech-card,
+[data-tone="dark"] .modal,
+[data-tone="dark"] .result-stat,
+[data-tone="dark"] .manual-score {
+  box-shadow: var(--shadow-md);
+}
+
+[data-tone="dark"] .civic-seal__core {
+  box-shadow: 0 20px 60px -10px color-mix(in srgb, var(--color-primary-dark) 50%, transparent);
+}
+
+[data-tone="dark"] ::selection {
+  background: var(--color-primary);
+  color: #fff;
+}
+::selection {
+  background: var(--color-accent);
+  color: #1a1c22;
+}
+
+/* Transición global al cambiar de tema */
+body, .navbar, .modal, .mech-card, .surface, .option-card, .pill, .filter-chip {
+  transition: background var(--t-slow) var(--ease), border-color var(--t-slow) var(--ease), color var(--t-slow) var(--ease), box-shadow var(--t-slow) var(--ease);
+}
+
+/* Quiz: sombras en tema oscuro para las nuevas tarjetas */
+[data-tone="dark"] .role-card,
+[data-tone="dark"] .grade-card { box-shadow: var(--shadow-md); }

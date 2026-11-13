@@ -1,0 +1,57 @@
+/* ==========================================================================
+   ACCESSIBILITY.CSS — tamaño de texto, contraste elevado, movimiento y foco.
+   Se activa con atributos de <html> (js/accessibility.js). Funciona con TODOS los
+   temas: no redefine temas, solo los refuerza.
+   ========================================================================== */
+
+/* ---- Tamaño del texto: todo el proyecto usa rem, así que basta escalar la raíz ---- */
+html { --fs-scale: 1; font-size: calc(100% * var(--fs-scale)); }
+html[data-fs="small"]  { --fs-scale: 0.9; }
+html[data-fs="large"]  { --fs-scale: 1.15; }
+html[data-fs="xlarge"] { --fs-scale: 1.3; }
+/* La navegación crece menos para no deformarse; textos largos se parten en lugar de desbordar. */
+html[data-fs="large"]  .navbar { font-size: 0.95rem; }
+html[data-fs="xlarge"] .navbar { font-size: 0.86rem; }
+html[data-fs="large"]  .navbar__links, html[data-fs="xlarge"] .navbar__links { gap: 0.15rem; }
+html[data-fs="large"] .btn, html[data-fs="xlarge"] .btn { white-space: normal; text-align: center; }
+html[data-fs="large"] :is(.flip-card__title, .theme-card__name, .lang-card__name, .his-item__name),
+html[data-fs="xlarge"] :is(.flip-card__title, .theme-card__name, .lang-card__name, .his-item__name) { overflow-wrap: anywhere; hyphens: auto; }
+html[data-fs="xlarge"] .flip-card { min-height: 22rem; }
+
+/* ---- Foco visible para teclado ---- */
+:focus-visible { outline: 3px solid var(--color-secondary); outline-offset: 2px; }
+.skip-link {
+  position: fixed; top: 0.5rem; left: 0.5rem; z-index: calc(var(--z-toast) + 10);
+  background: var(--surface); color: var(--text); border: 2px solid var(--color-secondary);
+  border-radius: var(--radius-sm); padding: 0.6rem 1rem; font-weight: 700; text-decoration: none;
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: none; }
+[tabindex="-1"]:focus { outline: none; }
+
+/* ---- Contraste elevado ---- */
+html[data-contrast="high"][data-tone="light"] {
+  --bg: #FFFFFF; --bg-alt: #F2F2F2; --surface: #FFFFFF; --surface-2: #F2F2F2;
+  --text: #000000; --text-muted: #1F1F1F; --border: #000000;
+  --color-primary: #8A0F1C; --color-primary-dark: #5E0912; --color-secondary: #0B4A94; --color-success: #146B38; --color-danger: #A11616;
+}
+html[data-contrast="high"][data-tone="dark"] {
+  --bg: #000000; --bg-alt: #0A0A0A; --surface: #000000; --surface-2: #111111;
+  --text: #FFFFFF; --text-muted: #EDEDED; --border: #FFFFFF;
+  --color-primary: #FF6B78; --color-primary-light: #FF9AA3; --color-secondary: #7DC0FF; --color-secondary-light: #A9D5FF; --color-accent: #FFD43B; --color-success: #5CE08F; --color-danger: #FF7A7A;
+}
+html[data-contrast="high"] :is(.cfg-card, .theme-card, .lang-card, .his-item, .mech-card, .flip-card__face, .modal, .case-card, .fact-card, .control-card, .config-card, .stat-card, .ach-card, .option-card, .mg-card, .game-card) { border: 2px solid var(--border) !important; box-shadow: none !important; }
+html[data-contrast="high"] :is(.btn, .filter-chip, .quick-tag, .cfg-tab, .cfg-select, .student-input, input, select, textarea) { border: 2px solid var(--border); }
+html[data-contrast="high"] .btn-primary { background: var(--color-primary); color: #fff; }
+html[data-contrast="high"][data-tone="dark"] .btn-primary { color: #000; }
+html[data-contrast="high"] :is(p, li, td, .info-lead, .text-muted) a, html[data-contrast="high"] a:not(.btn):not(.navbar__link):not(.settings-toggle) { text-decoration: underline; text-underline-offset: 3px; }
+html[data-contrast="high"] .text-muted, html[data-contrast="high"] small { color: var(--text-muted) !important; opacity: 1 !important; }
+html[data-contrast="high"] :focus-visible { outline: 4px solid var(--color-accent); outline-offset: 3px; }
+html[data-contrast="high"] .hero, html[data-contrast="high"] body { background-image: none; }
+
+/* ---- Movimiento reducido (opción de la plataforma; el sistema operativo ya se respeta en cada hoja de estilo) ---- */
+html[data-motion="reduce"] *, html[data-motion="reduce"] *::before, html[data-motion="reduce"] *::after {
+  animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important; transition-delay: 0s !important; scroll-behavior: auto !important;
+}
+html[data-motion="reduce"] .reveal { opacity: 1; transform: none; }

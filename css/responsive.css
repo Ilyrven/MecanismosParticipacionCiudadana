@@ -1,0 +1,31 @@
+/* ==========================================================================
+   RESPONSIVE.CSS
+   Ajustes de quiebre transversales que no pertenecen a un solo componente.
+   ========================================================================== */
+
+@media (max-width: 700px) {
+  .container { padding-inline: var(--space-4); }
+  .section { padding-block: var(--space-6); }
+  .hero { padding-block: var(--space-6) var(--space-5); }
+  .cta-band { padding: var(--space-6) var(--space-4); }
+}
+
+@media (max-width: 480px) {
+  .hero__actions { flex-direction: column; align-items: stretch; }
+  .hero__actions .btn { width: 100%; }
+  .question-actions { flex-direction: column; width: 100%; }
+  .question-actions .btn { width: 100%; }
+  .options-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- Modo "proyector": pantalla grande, texto y temporizador amplios ---- */
+@media (min-width: 1400px) {
+  .question-text { font-size: clamp(2.2rem, 3.4vw, 3.6rem); }
+  .question-mech-tag { font-size: var(--fs-3xl); }
+  .question-mech-tag svg { width: 34px; height: 34px; }
+  .timer { width: 230px; height: 230px; }
+  .timer__label { font-size: 3.2rem; }
+  .option-item { font-size: var(--fs-md); padding: var(--space-4) var(--space-5); }
+  .option-item__letter { width: 36px; height: 36px; font-size: var(--fs-sm); }
+  .options-grid { max-width: 820px; }
+}

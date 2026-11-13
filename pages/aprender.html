@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="learn.docTitle">Aprender · Participación Ciudadana · I.E. José Antonio Aguilera</title>
+  <link rel="icon" type="image/png" href="../assets/logo/favicon.png" />
+  <link rel="icon" href="../assets/logo/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="../assets/logo/favicon.png" />
+  <meta name="description" data-i18n-content="learn.metaDesc" content="Conoce en detalle los 8 mecanismos de participación ciudadana de la Constitución de 1991." />
+
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/cards.css" />
+  <link rel="stylesheet" href="../css/sections.css" />
+  <link rel="stylesheet" href="../css/info-general.css" />
+  <link rel="stylesheet" href="../css/modal.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="../css/themes.css" />
+  <link rel="stylesheet" href="../css/profile.css" />
+  <link rel="stylesheet" href="../css/accessibility.css" />
+  <script src="../js/accessibility.js"></script>
+</head>
+<body>
+
+  <div id="navbar-root" data-base="../"></div>
+
+  <header class="page-header">
+    <div class="container">
+      <span class="eyebrow" style="justify-content:center;" data-i18n="learn.eyebrow">Aprende</span>
+      <div class="page-header__icons" aria-hidden="true">
+        <span class="page-header__icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke-width="1.8"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5" stroke-width="1.8" stroke-linecap="round"/><path d="M16 4.2a3 3 0 0 1 0 5.8" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        <span class="page-header__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 21V9l8-5 8 5v12" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 21v-6h6v6" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+        <span class="page-header__icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7l8 6 8-6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="5" width="18" height="14" rx="2" stroke-width="1.8"/></svg></span>
+      </div>
+      <h1 data-i18n="learn.h1">Mecanismos de Participación Ciudadana</h1>
+      <p class="text-muted" style="max-width:56ch; margin-inline:auto;" data-i18n="learn.intro">
+        Consagrados principalmente en los artículos 40 y 103 de la Constitución Política de 1991
+        y desarrollados por la Ley 134 de 1994 y la Ley 1757 de 2015.
+      </p>
+    </div>
+  </header>
+
+  <!-- ============ ¿QUÉ SON Y POR QUÉ IMPORTAN? ============ -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="learn.whatEyebrow">¿Qué son?</span>
+        <h2 data-i18n="learn.whatTitle">Herramientas para participar en las decisiones del país</h2>
+      </div>
+      <p class="info-lead" id="info-que-es"></p>
+      <div class="quick-tags" id="info-quick-tags"></div>
+    </div>
+  </section>
+
+  <!-- ============ MARCO LEGAL ============ -->
+  <section id="marco-legal" class="section section--tight section--alt" style="scroll-margin-top: calc(var(--navbar-height) + 12px);">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="learn.legalEyebrow">Marco legal</span>
+        <h2 data-i18n="learn.legalTitle">La línea de tiempo de la participación en Colombia</h2>
+      </div>
+      <div class="timeline" id="info-marco-legal"></div>
+    </div>
+  </section>
+
+  <!-- ============ TARJETAS DE MECANISMOS ============ -->
+  <section id="mecanismos" class="section" style="scroll-margin-top: calc(var(--navbar-height) + 12px);">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="learn.mechEyebrow">Los 8 mecanismos</span>
+        <h2 data-i18n="learn.mechTitle">Explora cada uno en detalle</h2>
+      </div>
+      <div class="filter-bar" id="filter-bar" role="group" data-i18n-attr="aria-label:learn.filter" aria-label="Filtrar mecanismos"></div>
+      <div class="cards-grid" id="mechanisms-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============ NOTA IMPORTANTE + TABLA COMPARATIVA ============ -->
+  <section class="section section--tight section--alt">
+    <div class="container">
+      <div class="inner-block">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="learn.noteEyebrow">Nota importante</span>
+          <h2 data-i18n="learn.noteTitle">No todos pertenecen a la misma categoría jurídica</h2>
+        </div>
+        <p class="info-callout" id="info-nota-importante"></p>
+      </div>
+
+      <div class="inner-block">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="learn.diffEyebrow">Diferencias</span>
+          <h2 data-i18n="learn.diffTitle">¿Para qué sirve cada mecanismo?</h2>
+        </div>
+        <div class="compare-table-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr><th data-i18n="learn.thMech">Mecanismo</th><th data-i18n="learn.thUse">¿Para qué sirve?</th><th data-i18n="learn.thVote">¿Implica votación popular?</th></tr>
+            </thead>
+            <tbody id="info-diferencias-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CASOS PRÁCTICOS ============ -->
+  <section id="casos-practicos" class="section section--tight" style="scroll-margin-top: calc(var(--navbar-height) + 12px);">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="learn.caseEyebrow">Ponlo en práctica</span>
+        <h2 data-i18n="learn.caseTitle">¿Qué mecanismo usarías?</h2>
+        <p data-i18n="learn.caseText">Haz clic en una situación para ver el mecanismo relacionado.</p>
+      </div>
+      <div class="cases-grid" id="info-casos-practicos"></div>
+    </div>
+  </section>
+
+  <!-- ============ DERECHOS + ¿QUIÉNES? + BUENAS PRÁCTICAS ============ -->
+  <section class="section section--tight section--alt">
+    <div class="container">
+      <div class="inner-block" id="derechos" style="scroll-margin-top: calc(var(--navbar-height) + 12px);">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="learn.rightsEyebrow">Derechos que protegen</span>
+          <h2 data-i18n="learn.rightsTitle">Estos mecanismos defienden, entre otros</h2>
+        </div>
+        <div class="rights-wrap" id="info-derechos"></div>
+        <p class="info-lead" id="info-quienes" style="margin-top: var(--space-4);"></p>
+      </div>
+
+      <div class="inner-block">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="learn.respEyebrow">Para tener en cuenta</span>
+          <h2 data-i18n="learn.respTitle">Cómo participar de manera responsable</h2>
+        </div>
+        <div class="check-columns">
+          <div>
+            <h3 data-i18n="learn.good">✓ Buenas prácticas</h3>
+            <ul class="check-list" id="info-responsable"></ul>
+          </div>
+          <div>
+            <h3 data-i18n="learn.bad">✕ Errores frecuentes</h3>
+            <ul class="check-list" id="info-errores"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTROL SOCIAL + DATOS CURIOSOS + GLOSARIO + RESUMEN ============ -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="inner-block">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="learn.socialEyebrow">Más allá del voto</span>
+          <h2 data-i18n="learn.socialTitle">Participación y control social</h2>
+        </div>
+        <div class="control-grid" id="info-control-social"></div>
+      </div>
+
+      <div class="inner-block">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="learn.factsEyebrow">Datos curiosos</span>
+          <h2 data-i18n="learn.factsTitle">Para tener presente</h2>
+        </div>
+        <div class="facts-grid" id="info-datos-curiosos"></div>
+      </div>
+
+      <div class="inner-block">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="learn.gloEyebrow">Glosario</span>
+          <h2 data-i18n="learn.gloTitle">Términos básicos</h2>
+        </div>
+        <div class="glossary" id="info-glosario"></div>
+      </div>
+
+      <div class="inner-block">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="learn.sumEyebrow">En resumen</span>
+        </div>
+        <p class="info-callout" id="info-resumen"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="cta-band">
+        <h2 data-i18n="learn.ctaTitle">🎮 ¿Ya estudiaron los mecanismos?</h2>
+        <p data-i18n="learn.ctaText">Es momento de comprobarlo con el quiz de la clase.</p>
+        <a href="quiz.html" class="btn btn-secondary btn-lg" data-i18n="home.quizBtn">🚀 Ir al Quiz</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img class="navbar__logo" src="../assets/logo/logo-colegio.png" alt="" onerror="this.style.display='none'" />
+        <div class="footer__brand-text">
+          <b>Institución Educativa José Antonio Aguilera</b>
+          <span data-i18n="footer.project">Proyecto educativo — SENA · Mecanismos de Participación Ciudadana</span>
+        </div>
+      </div>
+      <div class="footer__meta">San Pedro, Valle del Cauca</div>
+    </div>
+  </footer>
+
+  <!-- Datos -->
+  <script src="../data/general/info-general.js"></script>
+  <script src="../data/mecanismos/tutela.js"></script>
+  <script src="../data/mecanismos/derecho-peticion.js"></script>
+  <script src="../data/mecanismos/referendo.js"></script>
+  <script src="../data/mecanismos/plebiscito.js"></script>
+  <script src="../data/mecanismos/consulta-popular.js"></script>
+  <script src="../data/mecanismos/cabildo-abierto.js"></script>
+  <script src="../data/mecanismos/iniciativa-popular.js"></script>
+  <script src="../data/mecanismos/revocatoria-mandato.js"></script>
+  <script src="../data/mecanismos/index.js"></script>
+  <script src="../data/preguntas/preguntas-faciles.js"></script>
+  <script src="../data/preguntas/preguntas-medias.js"></script>
+  <script src="../data/preguntas/preguntas-dificiles.js"></script>
+  <script src="../data/preguntas/preguntas.js"></script>
+
+  <!-- Componentes -->
+  <!-- Idiomas (sistema central: js/i18n) -->
+  <script src="../js/i18n/i18n.js"></script>
+  <script src="../js/i18n/lang/es.js"></script>
+  <script src="../js/i18n/lang/en.js"></script>
+  <script src="../js/i18n/lang/ru.js"></script>
+  <script src="../js/i18n/lang/pt.js"></script>
+  <script src="../js/i18n/lang/fr.js"></script>
+  <script src="../data/i18n/content-en.js"></script>
+  <script src="../data/i18n/content-ru.js"></script>
+  <script src="../data/i18n/content-pt.js"></script>
+  <script src="../data/i18n/content-fr.js"></script>
+  <script src="../js/components/icons.js"></script>
+  <script src="../js/components/content.js"></script>
+  <script src="../js/components/navbar.js"></script>
+  <script src="../js/components/buttons.js"></script>
+  <script src="../js/components/cards.js"></script>
+  <script src="../js/components/animations.js"></script>
+  <script src="../js/components/info-general.js"></script>
+
+  <!-- Núcleo -->
+  <script src="../js/config.js"></script>
+  <script src="../js/profile.js"></script>
+  <script src="../js/sound.js"></script>
+  <script src="../js/student.js"></script>
+  <script src="../js/history.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/modal.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

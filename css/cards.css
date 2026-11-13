@@ -1,0 +1,282 @@
+/* ==========================================================================
+   CARDS.CSS
+   Sistema de tarjetas interactivas con flip 3D (frente/reverso).
+   Conserva la identidad visual existente: fondo de tarjeta, bordes
+   suaves, sombra, acento de color por mecanismo (--mech-color).
+   ========================================================================== */
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+
+@media (max-width: 1080px) {
+  .cards-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .cards-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- Contenedor con perspectiva 3D ---- */
+.flip-card {
+  perspective: 1400px;
+  height: 260px;
+}
+
+.flip-card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.flip-card.is-flipped .flip-card__inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card__inner:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 4px;
+  border-radius: var(--radius-lg);
+}
+
+/* ---- Caras (frente y reverso) ---- */
+.flip-card__face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  background: var(--surface);
+  overflow: hidden;
+  transition: transform var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease), border-color var(--t-base) var(--ease);
+}
+
+.flip-card:hover .flip-card__face,
+.flip-card__inner:focus-visible .flip-card__face {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: color-mix(in srgb, var(--mech-color, var(--color-primary)) 45%, var(--border));
+}
+/* Al pasar el mouse mientras está girada, la elevación aplica sobre la cara visible */
+.flip-card.is-flipped:hover .flip-card__face--front { transform: none; box-shadow: var(--shadow-sm); }
+
+/* Brillo sutil de acento en la esquina superior */
+.flip-card__face::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -30%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--mech-color, var(--color-primary)) 22%, transparent) 0%, transparent 70%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--t-base) var(--ease);
+}
+.flip-card:hover .flip-card__face::before { opacity: 1; }
+
+/* ---- FRENTE ---- */
+.flip-card__face--front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-5);
+  gap: var(--space-2);
+}
+
+.flip-card__number {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-4);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.05em;
+  color: var(--mech-color, var(--color-primary));
+  opacity: 0.65;
+}
+
+.flip-card__icon {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--mech-color, var(--color-primary)) 14%, transparent);
+  margin-bottom: var(--space-1);
+  transition: transform var(--t-base) var(--ease);
+}
+.flip-card:hover .flip-card__icon { transform: scale(1.08) rotate(-4deg); }
+.flip-card__icon svg { width: 28px; height: 28px; stroke: var(--mech-color, var(--color-primary)); }
+
+.flip-card__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-md);
+  margin-bottom: 0;
+  line-height: 1.25;
+}
+
+.flip-card__tagline {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.flip-card__hint {
+  margin-top: auto;
+  font-size: var(--fs-xs);
+  color: var(--mech-color, var(--color-primary));
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.flip-card__hint svg { width: 13px; height: 13px; }
+
+/* ---- REVERSO ---- */
+.flip-card__face--back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4) var(--space-5);
+  background: linear-gradient(165deg, color-mix(in srgb, var(--mech-color, var(--color-primary)) 10%, var(--surface)), var(--surface) 60%);
+}
+
+.flip-card__back-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  color: var(--mech-color, var(--color-primary));
+  margin-bottom: var(--space-2);
+}
+
+.flip-card__back-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.flip-card__back-summary {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--text);
+  margin-bottom: var(--space-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.flip-card__key-idea {
+  margin-top: auto;
+  align-self: flex-start;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-xs);
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--mech-color, var(--color-primary)) 18%, transparent);
+  color: var(--mech-color, var(--color-primary));
+}
+
+.flip-card__back-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border);
+}
+
+.flip-card__back-more {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 0.35rem 0.7rem;
+}
+.flip-card__back-more:hover { background: var(--border); }
+
+.flip-card__back-return {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  padding: 0.35rem 0.2rem;
+}
+.flip-card__back-return:hover { color: var(--text); }
+
+/* La entrada progresiva de las tarjetas usa la animación 100% CSS
+   definida en main.css (.reveal) — no requiere JavaScript. */
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-card__inner { transition: opacity var(--t-base) var(--ease); }
+  .flip-card.is-flipped .flip-card__inner { transform: none; }
+  .flip-card__face--back {
+    position: absolute;
+    inset: 0;
+    transform: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--t-base) var(--ease);
+  }
+  .flip-card.is-flipped .flip-card__face--front {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .flip-card.is-flipped .flip-card__face--back {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .flip-card { height: 240px; }
+}
+
+/* ---- Tarjetas de configuración (individual / grupos, opciones de quiz) ---- */
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-3);
+}
+
+.option-card {
+  border: 2px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  text-align: center;
+  transition: border-color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+}
+.option-card:hover { transform: translateY(-2px); }
+.option-card__icon { font-size: 1.8rem; margin-bottom: var(--space-2); }
+.option-card__label { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-sm); }
+
+.option-card.is-selected {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 8%, var(--surface));
+}

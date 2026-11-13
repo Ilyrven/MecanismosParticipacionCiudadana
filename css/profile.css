@@ -1,0 +1,27 @@
+/* ==========================================================================
+   PROFILE.CSS — avisos discretos (logros, perfil vencido) y tarjeta de
+   «continuar con tu perfil». Cargado en todas las páginas.
+   ========================================================================== */
+.rc-toasts {
+  position: fixed; right: var(--space-4); bottom: var(--space-4); z-index: var(--z-toast);
+  display: flex; flex-direction: column; gap: var(--space-2); align-items: flex-end;
+  max-width: min(92vw, 360px); pointer-events: none;
+}
+.rc-toast {
+  display: flex; align-items: center; gap: var(--space-3);
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border); border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-md);
+  padding: 0.7rem 1rem; font-size: var(--fs-sm); font-weight: 600;
+  animation: rc-toast-in var(--t-base) var(--ease);
+  transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
+}
+.rc-toast.is-out { opacity: 0; transform: translateY(8px); }
+.rc-toast__icon { font-size: 1.4rem; line-height: 1; }
+@keyframes rc-toast-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+.student-recover { margin-bottom: var(--space-5); display: grid; gap: var(--space-3); }
+.student-recover__title { font-size: var(--fs-md); margin: 0; }
+.student-recover p { margin: 0; }
+.student-recover__or { font-size: var(--fs-sm); }
+.student-form [hidden] { display: none !important; }

@@ -1,0 +1,34 @@
+# Dependencias (se instalan con `npm ci`)
+node_modules/
+
+# Bases de datos locales y datos del servidor (NO se versionan: contienen perfiles de estudiantes)
+server/storage/
+*.sqlite
+*.sqlite3
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite-journal
+*.db
+
+# Secretos y credenciales
+.env
+.env.*
+!.env.example
+.pepper
+*.pem
+*.key
+*.crt
+*.p12
+
+# Temporales, registros y archivos del sistema
+*.log
+npm-debug.log*
+*.tmp
+*.temp
+*.swp
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+coverage/
+.netlify/
